@@ -1,0 +1,54 @@
+﻿@model IEnumerable<CategoryOperation.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<div class="container">
+    <div class="row">
+        <div class="col-8 offset-2">
+            <h1 class="text-center text-primary">PRODUCT RECORD</h1>
+            <p>
+                @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary btn-sm" })
+            </p>
+            <table class="table table-bordered">
+                <tr class="text-center">
+                    <th>
+                        @Html.DisplayNameFor(model => model.Categories.ID)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Categories.NAME)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ProductName)
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr class="text-center">
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Categories.ID)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Categories.NAME)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ProductName)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.ProductId }, new { @class = "btn btn-success rounded-0 shadow" })
+                            @Html.ActionLink("Details", "Details", new { id = item.ProductId }, new { @class = "btn btn-warning rounded-0 shadow" })
+                            @Html.ActionLink("Delete", "Delete", new { id = item.ProductId }, new { @class = "btn btn-danger rounded-0 shadow" })
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </div>
+</div>
+

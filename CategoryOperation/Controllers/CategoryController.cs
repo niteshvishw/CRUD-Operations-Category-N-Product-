@@ -89,10 +89,27 @@ namespace CategoryOperation.Controllers
             return View(Data3ByID);
         }
 
+        public async Task<ActionResult> Active(int id)
+        {
+            var Act = db.Categories.Single(c=>c.ID == id);
+            Act.IsActive=true;
+            await db.SaveChangesAsync();
+            return RedirectToAction("Index", "Products");
+        }
+
+        public async Task<ActionResult> deactive(int id)
+        {
+            var Deact = db.Categories.Single(c => c.ID == id);
+            Deact.IsActive = false;
+            await db.SaveChangesAsync();
+            return RedirectToAction("Index", "Products");
+        }
 
 
-      
-   
+
+
+
+
 
 
     }

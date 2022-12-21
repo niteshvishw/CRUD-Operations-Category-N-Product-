@@ -1,0 +1,39 @@
+﻿@model CategoryOperation.Models.Product
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>You Want To Delete This Data?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Categories.NAME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Categories.NAME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductName)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-danger rounded-0 shadow"  /> 
+            @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary rounded-0 shadow"  })
+        </div>
+    }
+</div>

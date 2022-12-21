@@ -14,7 +14,6 @@ namespace CategoryOperation.Models
 
         [Required(ErrorMessage = "Name Is Required!")]
         [StringLength(60, ErrorMessage = "Cannot Accept More Than 60 Characters!")]
-        [RegularExpression("^([a-zA-Z0-9 .&'-]+)$", ErrorMessage = "Invalid First Name")]
         [Display(Name = "Category NAME")]
         public String NAME { get; set; }
 

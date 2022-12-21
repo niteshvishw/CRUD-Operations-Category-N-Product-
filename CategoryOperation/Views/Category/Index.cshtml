@@ -6,60 +6,57 @@
 
 <h2>Index</h2>
 
-@* Message From Edit *@
-@* @Html.Raw(TempData["UpdateMessage"]) *@
+<div class="container">
+    <div class="row">
+        <div class="col-8 offset-2">
 
+            <h1 class="text-center text-primary">CATEGORY RECORD</h1>
+            <p>
+                @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary btn-sm" })
+            </p>
 
-<p style="color:green;">@TempData["UpdateMessage"]</p>
+            @* Message From Delete *@
+            <p class="text-center text-success">@TempData["DeleteMessage"]</p>
+            @* Message From Create *@
+            <p class="text-center text-success">@TempData["InsertMessage"]</p>
+            @* Message From Edit *@
+            <p class="text-center text-success">@TempData["UpdateMessage"]</p>
+            <table class="table table-bordered">
+                <tr class="text-center">
+                    <th>
+                        @Html.DisplayNameFor(model => model.ID)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.NAME)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.IsActive)
+                    </th>
+                    <th></th>
+                </tr>
 
+                @foreach (var item in Model)
+                {
+                    <tr class="text-center">
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ID)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NAME)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IsActive)
 
-@* Message From Create *@
-@* @Html.Raw(TempData["InsertMessage"]) *@
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { @class = "btn btn-success rounded-0 shadow" })
+                            @Html.ActionLink("Details", "Details", new { id = item.ID }, new { @class = "btn btn-warning rounded-0 shadow" })
+                            @Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { @class = "btn btn-danger rounded-0 shadow" })
+                        </td>
+                    </tr>
+                }
 
-<p style="color:green;">@TempData["InsertMessage"]</p>
-
-
-@* Message From Delete *@
-<p style="color:red;">@TempData["DeleteMessage"]</p>
-
-
-
-<p>
-    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary" })
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.ID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NAME)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsActive)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NAME)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsActive)
-
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ID },new { @class = "btn btn-primary btnStyle" })
-                @Html.ActionLink("Details", "Details", new { id = item.ID }, new { @class = "btn btn-success btnStyle" }) 
-                @Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { @class = "btn btn-danger btnStyle" })
-            </td> 
-        </tr>
-    }
-
-</table>
+            </table>
+        </div>
+    </div>
+</div>
