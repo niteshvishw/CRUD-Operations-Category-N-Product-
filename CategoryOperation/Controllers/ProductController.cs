@@ -37,6 +37,7 @@ namespace CategoryOperation.Controllers
             {
                 db.Products.Add(p);
                 db.SaveChanges();
+                TempData["InsertMessage"] = "Data Inserted !!";
                 return RedirectToAction("Index");
             }
             ViewBag.ID = new SelectList(db.Categories, "ID", "NAME", p.ID);
@@ -59,6 +60,7 @@ namespace CategoryOperation.Controllers
             {
                 db.Entry(p).State= EntityState.Modified;
                 db.SaveChanges();
+                TempData["UpdateMessage"] = "Data Updated!!";
                 return RedirectToAction("Index");
             }
             ViewBag.ID = new SelectList(db.Categories, "ID", "NAME", p.ID);
@@ -76,6 +78,7 @@ namespace CategoryOperation.Controllers
             {
                 db.Entry(Data3).State = EntityState.Deleted;
                 db.SaveChanges();
+                TempData["DeleteMessage"] = "Data Deleted!!";
                 return RedirectToAction("Index");
             }
             ViewBag.ID = new SelectList(db.Categories, "ID", "NAME", id);

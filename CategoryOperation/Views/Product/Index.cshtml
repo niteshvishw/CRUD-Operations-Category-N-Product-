@@ -13,6 +13,13 @@
             <p>
                 @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary btn-sm" })
             </p>
+
+            @* Message From Delete *@
+            <p class="text-center text-success">@TempData["DeleteMessage"]</p>
+            @* Message From Create *@
+            <p class="text-center text-success">@TempData["InsertMessage"]</p>
+            @* Message From Edit *@
+            <p class="text-center text-success">@TempData["UpdateMessage"]</p>
             <table class="table table-bordered">
                 <tr class="text-center">
                     <th>
@@ -40,9 +47,9 @@
                             @Html.DisplayFor(modelItem => item.ProductName)
                         </td>
                         <td>
-                            @Html.ActionLink("Edit", "Edit", new { id = item.ProductId }, new { @class = "btn btn-success rounded-0 shadow" })
-                            @Html.ActionLink("Details", "Details", new { id = item.ProductId }, new { @class = "btn btn-warning rounded-0 shadow" })
-                            @Html.ActionLink("Delete", "Delete", new { id = item.ProductId }, new { @class = "btn btn-danger rounded-0 shadow" })
+                            @Html.ActionLink("Edit", "Edit", new { id = item.ProductId }, new { @class = "btn btn-outline-success rounded-0 shadow" })
+                            @Html.ActionLink("Details", "Details", new { id = item.ProductId }, new { @class = "btn btn-outline-warning rounded-0 shadow" })
+                            @Html.ActionLink("Delete", "Delete", new { id = item.ProductId }, new { @class = "btn btn-outline-danger rounded-0 shadow" })
                         </td>
                     </tr>
                 }

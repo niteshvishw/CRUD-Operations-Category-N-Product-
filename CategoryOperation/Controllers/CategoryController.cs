@@ -97,7 +97,7 @@ namespace CategoryOperation.Controllers
             return RedirectToAction("Index", "Products");
         }
 
-        public async Task<ActionResult> deactive(int id)
+        public async Task<ActionResult> Deactive(int id)
         {
             var Deact = db.Categories.Single(c => c.ID == id);
             Deact.IsActive = false;
