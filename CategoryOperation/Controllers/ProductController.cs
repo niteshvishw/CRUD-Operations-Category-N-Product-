@@ -15,9 +15,9 @@ namespace CategoryOperation.Controllers
 
         //Get : Product/Index
 
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            var Data = db.Products.Include(c=>c.Categories).Where(x=>x.Categories.IsActive==true).ToList();
+            var Data = await db.Products.Include(c=>c.Categories).Where(x=>x.Categories.IsActive==true).ToListAsync();
             return View(Data);
         }
 
@@ -31,12 +31,12 @@ namespace CategoryOperation.Controllers
 
         // Post Product/Create
         [HttpPost]
-        public ActionResult Create(Product p)
+        public async Task<ActionResult> Create(Product p)
         {
             if(ModelState.IsValid)
             {
                 db.Products.Add(p);
-                db.SaveChanges();
+                await db.SaveChangesAsync();
                 TempData["InsertMessage"] = "Data Inserted !!";
                 return RedirectToAction("Index");
             }
@@ -46,20 +46,20 @@ namespace CategoryOperation.Controllers
         }
 
         // Get Product/Edit/ID
-         public ActionResult Edit(int id)
+         public async Task<ActionResult> Edit(int id)
         {
             ViewBag.ID = new SelectList(db.Categories, "ID", "NAME");
-            var Data2 = db.Products.Where(model=>model.ProductId==id).FirstOrDefault();
+            var Data2 = await db.Products.Where(model=>model.ProductId==id).FirstOrDefaultAsync();
             return View(Data2);
         }
 
         [HttpPost]
-        public ActionResult Edit(Product p)
+        public async Task<ActionResult> Edit(Product p)
         {
             if(ModelState.IsValid)
             {
                 db.Entry(p).State= EntityState.Modified;
-                db.SaveChanges();
+                await db.SaveChangesAsync();
                 TempData["UpdateMessage"] = "Data Updated!!";
                 return RedirectToAction("Index");
             }
@@ -69,15 +69,15 @@ namespace CategoryOperation.Controllers
 
         // Get/Product/Delete
         [HttpGet]
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Delete(int id)
         {
             ViewBag.ID = new SelectList(db.Categories, "ID", "NAME");
-            var Data3 = db.Products.Where(model => model.ProductId == id).FirstOrDefault();
+            var Data3 = await db.Products.Where(model => model.ProductId == id).FirstOrDefaultAsync();
 
             if (ModelState.IsValid)
             {
                 db.Entry(Data3).State = EntityState.Deleted;
-                db.SaveChanges();
+                await db.SaveChangesAsync();
                 TempData["DeleteMessage"] = "Data Deleted!!";
                 return RedirectToAction("Index");
             }
@@ -88,10 +88,10 @@ namespace CategoryOperation.Controllers
         // Get/Product/Details
         [HttpGet]
 
-        public ActionResult Details(int id)
+        public async Task<ActionResult> Details(int id)
         {
             ViewBag.ID = new SelectList(db.Categories, "ID", "NAME");
-            var Data4 = db.Products.Where(model=>model.ProductId== id).FirstOrDefault();
+            var Data4 = await db.Products.Where(model=>model.ProductId== id).FirstOrDefaultAsync();
             return View(Data4);
         }
 
