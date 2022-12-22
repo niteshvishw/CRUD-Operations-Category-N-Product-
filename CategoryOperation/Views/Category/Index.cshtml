@@ -1,9 +1,9 @@
 ﻿@model IEnumerable<CategoryOperation.Models.Category>
 
-@{
+@{  
     ViewBag.Title = "Index";
 }
-
+ 
 <h2>Index</h2>
 
 <div class="container">
@@ -12,7 +12,7 @@
 
             <h1 class="text-center text-primary">CATEGORY RECORD</h1>
             <p>
-                @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary btn-sm " })
+                @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-outline-primary rounded-0 shadow" })
             </p>
 
             @* Message From Delete *@
@@ -52,7 +52,7 @@
                             @Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { @class = "btn btn-outline-success rounded-0 shadow" })
                             @Html.ActionLink("Details", "Details", new { id = item.ID }, new { @class = "btn btn-outline-warning rounded-0 shadow" })
                             @Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { @class = "btn btn-outline-danger rounded-0 shadow" })
-                           
+
                         </td>
                     </tr>
                 }
