@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using CategoryOperation.Models;
+using PagedList.Mvc;
+using PagedList;
 
 namespace CategoryOperation.Controllers
 {
@@ -15,10 +17,20 @@ namespace CategoryOperation.Controllers
 
 
         // GET: Category/Index
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(int ? page1)
         {
-            var Data = await db.Categories.ToListAsync();
-            return View(Data);
+            if (ModelState.IsValid)
+            {
+                var Data = await db.Categories.ToListAsync();
+                return View("Index",Data.ToList().ToPagedList(page1 ?? 1, 5));
+
+            }
+            else
+            {
+                var Data = await db.Categories.ToListAsync();
+                return View("Index", Data.ToList().ToPagedList(page1 ?? 1, 5));
+            }
+              
         }
 
 

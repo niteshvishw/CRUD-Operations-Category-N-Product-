@@ -1,7 +1,11 @@
-﻿@model IEnumerable<CategoryOperation.Models.Product>
+﻿@*  @model IEnumerable<CategoryOperation.Models.Product> *@
+@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<CategoryOperation.Models.Product>
 
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Index</h2>
@@ -23,13 +27,13 @@
             <table class="table table-bordered">
                 <tr class="text-center">
                     <th>
-                        @Html.DisplayNameFor(model => model.Categories.ID)
+                        @Html.DisplayNameFor(model => model.First().Categories.ID)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Categories.NAME)
+                        @Html.DisplayNameFor(model => model.First().Categories.NAME)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.ProductName)
+                        @Html.DisplayNameFor(model => model.First().ProductName)
                     </th>
                     <th></th>
                 </tr>
@@ -59,3 +63,4 @@
     </div>
 </div>
 
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
